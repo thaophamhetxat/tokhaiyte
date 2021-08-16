@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        h4 {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<h2 style="text-align: center">TỜ KHAI Y TẾ</h2>
+<h3 style="text-align: center">ĐÂY LÀ TÀI LIỆU QUAN TRỌNG, THÔNG TIN CỦA ANH/CHỊ SẼ GIÚP CƠ QUAN Y TẾ LIÊN LẠC KHI CẦN
+    THIẾT ĐỂ PHÒNG CHỐNG DỊCH BỆNH TRUYỀN NHIỄM</h3>
+<h4> Khuyến cáo: Khai báo thông tin sai là vi phạm pháp luật Việt Nam và có thể sử lý hành chính</h4>
+<form th:action="@{create}" th:object="${list}" method="post" nctype="multipart/form-data">
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <td>Họ và tên:(ghi chữ hoa)(*):</td>
+            <td><input placeholder="nhập họ và tên" th:field="*{name}"></td>
+        </tr>
+        <tr>
+            <td>Năm sinh(*)</td>
+            <td><input placeholder="nhập năm sinh" th:field="*{year}"></td>
+            <td>Giới tính(*)</td>
+            <td><input placeholder="nhập giới tính" th:field="*{sex}"></td>
+            <td>Quốc tịch(*)</td>
+            <td><input placeholder="nhập Quốc tịch" th:field="*{quocTich}"></td>
+        </tr>
+        <tr>
+            <td>Số hộ chiếu(*):</td>
+            <td><input placeholder="nhập Số hộ chiếu" th:field="*{soHoChieu}"></td>
+        </tr>
+        <tr>
+            <td>Thông tin đi lại(*):</td>
+            <td>
+                <input type="radio" id="contactChoice1"
+                       th:field="*{thongTinDiLai}" value="taubay">
+                <label for="contactChoice1">Tầu bay</label>
+
+                <input type="radio" id="contactChoice2"
+                       th:field="*{thongTinDiLai}" value="tauthuyen">
+                <label for="contactChoice2">Tàu thuyền</label>
+
+                <input type="radio" id="contactChoice3"
+                       th:field="*{thongTinDiLai}" value="oto">
+                <label for="contactChoice3">ô tô</label>
+            </td>
+        </tr>
+        <tr>
+            <td>Số hiệu phương tiện(*):</td>
+            <td><input placeholder="nhập Số hiệu phương tiện" th:field="*{soHieuPhuongTien}"></td>
+            <td>Số ghế(*):</td>
+            <td><input placeholder="nhập Số ghế" th:field="*{soGhe}"></td>
+        </tr>
+        <tr>
+            <td>Ngày khởi hành(*):</td>
+            <td><input type="date" th:field="*{ngayKhoiHanh}"></td>
+            <td>Ngày kết thúc(*):</td>
+            <td><input type="date" th:field="*{ngayKetThuc}"></td>
+        </tr>
+
+        <tr>
+            <td>Lịch sử di chuyển(*):</td>
+            <td><input placeholder="nhập Lịch sử di chuyển" th:field="*{lichSu}"></td>
+        </tr>
+        <tr>
+            <td>Địa chỉ liên lạc:</td>
+        </tr>
+        <tr>
+            <td>tỉnh/thành(*)</td>
+            <td><select>
+                <option value="Hưng Yên">Hưng Yên</option>
+                <option value="Hà Nội">Hà Nội</option>
+            </select></td>
+            <td>Quận/Huyện(*)</td>
+            <td><select>
+                <option value="Cầu diễn">Cầu diễn</option>
+                <option value="Yên Mỹ">Yên Mỹ</option>
+            </select></td>
+            <td>Phường/Xã(*)</td>
+            <td><select>
+                <option value="Cầu Giấy">Cầu Giấy</option>
+                <option value="Lý Thường Kiệt">Lý Thường Kiệt</option>
+            </select></td>
+        </tr>
+
+        <tr>
+            <td>Địa chỉ nơi ở(*):</td>
+            <td><input placeholder="nhập Địa chỉ nơi ở" th:field="*{address}"></td>
+        </tr>
+        <tr>
+            <td>Điện thoại(*):</td>
+            <td><input placeholder="nhập Điện thoại" th:field="*{phone}"></td>
+            <td>Email(*):</td>
+            <td><input placeholder="nhập Email" th:field="*{email}"></td>
+        </tr>
+        <tr>
+            <td>Trong vòng 14 ngày qua,anh/chị có thấy dấu hiệu nào sau đây không?(*)</td>
+        </tr>
+        </tbody>
+        <table class="table table-bordered table-sm">
+            <thead>
+            <tr>
+                <th>Triệu trứng</th>
+                <th>có</th>
+                <th>không</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Sốt(*)</td>
+                <td>
+                    <input type="radio" name="drone" value="sot" checked>
+                </td>
+                <td>
+                    <input type="radio" name="drone" value="sot" checked>
+                </td>
+            </tr>
+            <tr>
+                <td>Ho(*)</td>
+                <td>
+                    <input type="radio" name="drone2" value="ho" checked>
+                </td>
+                <td>
+                    <input type="radio" name="drone2" value="ho" checked>
+                </td>
+            </tr>
+            <tr>
+                <td>Khó thở(*)</td>
+                <td>
+                    <input type="radio" name="drone3" value="khotho" checked>
+                </td>
+                <td>
+                    <input type="radio" name="drone3" value="khotho" checked>
+                </td>
+            </tr>
+            <tr>
+                <td>Đau họng(*)</td>
+                <td>
+                    <input type="radio" name="drone4" value="dauhong" checked>
+                </td>
+                <td>
+                    <input type="radio" name="drone4" value="dauhong" checked>
+                </td>
+            </tr>
+            <tr>
+                <td>Nôn/Buồn nôn(*)</td>
+                <td>
+                    <input type="radio" name="drone5" value="non" checked>
+                </td>
+                <td>
+                    <input type="radio" name="drone5" value="non" checked>
+                </td>
+            </tr>
+            <tr>
+                <td>Tiêu Chảy(*)</td>
+                <td>
+                    <input type="radio" name="drone6" value="tieuchay" checked>
+                </td>
+                <td>
+                    <input type="radio" name="drone6" value="tieuchay" checked>
+                </td>
+            </tr>
+            <tr>
+                <td>Xuất huyết ngoài da(*)</td>
+                <td>
+                    <input type="radio" name="drone7" value="xuathuyet" checked>
+                </td>
+                <td>
+                    <input type="radio" name="drone7" value="xuathuyet" checked>
+                </td>
+            </tr>
+            <tr>
+                <td>Nổi ban ngoài da(*)</td>
+                <td>
+                    <input type="radio" name="drone8" value="noiban" checked>
+                </td>
+                <td>
+                    <input type="radio" name="drone8" value="noiban" checked>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+<h5>Lịch sử phơi nhiễm: Trong 14 ngày qua anh/chị có:(*):</h5>
+        <table class="table table-bordered table-sm">
+            <thead>
+            <tr>
+                <th></th>
+                <th>có</th>
+                <th>không</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Đến trang trại chăn nuôi/ chợ buôn bán động vật sống/ cơ sở giết mổ động vật/ tiếp xúc động vật(*)
+                </td>
+                <td>
+                    <input type="radio" name="drone9" value="dongvat" checked>
+                </td>
+                <td>
+                    <input type="radio" name="drone9" value="dongvat" checked>
+                </td>
+            </tr>
+            <tr>
+                <td>Tiếp xúc gần (<2m)với người mắc bệnh viêm đường hô hấp(*)</td>
+                <td>
+                    <input type="radio" name="drone0" value="tiepxuc" checked>
+                </td>
+                <td>
+                    <input type="radio" name="drone0" value="tiepxuc" checked>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </table>
+
+    <h4> Dữ liệu bạn cung cấp hoàn toàn bảo mật và chỉ khôi phục cho việc phòng chống dịch, thuộc quản lý của ban chỉ
+        đạo quốc gia về phòng chống dịch covid 19</h4>
+    <h4>Khi bạn nhấn nút "gửi" là bạn đã hiểu và đồng ý</h4>
+    <button type="submit" class="btn btn-success" style="text-align: center">Gửi tờ khai</button>
+</form>
+</body>
+</html>
